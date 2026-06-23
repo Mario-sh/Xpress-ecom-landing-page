@@ -1,0 +1,6 @@
+{
+  "name": "Xpress E-com",
+  "description": "Landing page premium pour la formation e-commerce Xpress E-com par Marcus Lawrence.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
