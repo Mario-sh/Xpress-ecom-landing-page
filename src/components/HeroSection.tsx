@@ -1,6 +1,5 @@
 import { motion } from 'motion/react';
 import { ArrowRight, Play } from 'lucide-react';
-import { LiquidButton } from './ui/liquid-glass-button';
 
 export default function HeroSection({ onJoin }: { onJoin?: () => void }) {
   return (
@@ -74,18 +73,31 @@ export default function HeroSection({ onJoin }: { onJoin?: () => void }) {
             transition={{ duration: 0.8, delay: 0.32, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col w-full gap-4 mt-10 sm:mt-12 sm:flex-row sm:w-auto sm:items-center"
           >
-            <LiquidButton
-              size="xxl"
+            {/* Primary CTA — solid gradient avec glow */}
+            <button
               onClick={onJoin}
-              className="text-white bg-brand-500/25 border border-brand-500/50 font-bold tracking-wide hover:bg-brand-500/35 shadow-[0_0_0_0_rgba(79,123,255,0.3)] hover:shadow-[0_0_0_8px_rgba(79,123,255,0.12)]"
+              className="group relative inline-flex items-center justify-center gap-2.5 h-14 px-8 rounded-xl text-base font-bold text-white overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 transition-all duration-300 hover:-translate-y-0.5"
+              style={{
+                background: 'linear-gradient(135deg, #4F7BFF 0%, #8b5cf6 100%)',
+                boxShadow: '0 0 0 0 rgba(79,123,255,0.5), 0 4px 24px rgba(79,123,255,0.35)',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 0 0 6px rgba(79,123,255,0.18), 0 8px 32px rgba(79,123,255,0.45)';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 0 0 0 rgba(79,123,255,0.5), 0 4px 24px rgba(79,123,255,0.35)';
+              }}
             >
-              Rejoindre le cercle élite
-              <ArrowRight className="w-5 h-5 ml-1" />
-            </LiquidButton>
+              {/* Shimmer effect */}
+              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full transition-transform duration-700" />
+              <span className="relative z-10">Rejoindre le cercle élite</span>
+              <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+            </button>
 
+            {/* Secondary CTA */}
             <button
               onClick={() => document.getElementById('resultats')?.scrollIntoView({ behavior: 'smooth' })}
-              className="inline-flex items-center justify-center h-14 gap-2.5 px-7 text-base font-medium border rounded-xl text-gray-300 border-white/10 bg-white/[0.04] hover:bg-white/[0.08] hover:text-white transition-all duration-200 backdrop-blur-sm focus:outline-none"
+              className="inline-flex items-center justify-center h-14 gap-2.5 px-7 text-base font-medium border rounded-xl text-gray-300 border-white/[0.12] bg-white/[0.05] hover:bg-white/[0.1] hover:text-white transition-all duration-200 backdrop-blur-sm focus:outline-none"
             >
               <Play className="w-4 h-4 text-brand-400 fill-brand-400" />
               Voir les résultats

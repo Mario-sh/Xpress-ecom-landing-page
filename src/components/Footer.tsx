@@ -36,19 +36,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12 pb-12" style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-2.5 mb-4">
-              <div
-                className="flex items-center justify-center w-8 h-8 rounded-lg shrink-0"
-                style={{ background: 'linear-gradient(135deg, #4F7BFF, #8b5cf6)', boxShadow: '0 0 12px rgba(79,123,255,0.3)' }}
-              >
-                <span
-                  className="font-display font-extrabold text-white leading-none select-none"
-                  style={{ fontSize: '0.85rem', letterSpacing: '-0.03em' }}
-                >
-                  XE
-                </span>
-              </div>
-              <span className="font-display font-bold text-lg text-white tracking-tight">Xpress E-com</span>
+            <div className="mb-5">
+              <img
+                src="/logo.png"
+                alt="Xpress E-com"
+                className="h-20 w-20 object-cover rounded-full"
+              />
             </div>
 
             <p className="text-sm leading-relaxed max-w-sm" style={{ color: '#6B7280' }}>

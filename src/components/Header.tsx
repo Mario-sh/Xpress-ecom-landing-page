@@ -14,26 +14,13 @@ export default function Header({ onJoin }: { onJoin?: () => void }) {
         <div className="relative bg-gray-950/80 backdrop-blur-xl border border-white/[0.06] rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.4)] z-20">
           <div className="flex items-center justify-between h-[60px] px-4 sm:px-6">
             {/* Logo */}
-            <div className="flex items-center gap-2.5">
-              {/* XE monogram */}
-              <div
-                className="flex items-center justify-center w-8 h-8 rounded-lg shrink-0"
-                style={{
-                  background: 'linear-gradient(135deg, #4F7BFF, #8b5cf6)',
-                  boxShadow: '0 0 14px rgba(79,123,255,0.35)',
-                }}
-              >
-                <span
-                  className="font-display font-extrabold text-white leading-none select-none"
-                  style={{ fontSize: '0.85rem', letterSpacing: '-0.03em' }}
-                >
-                  XE
-                </span>
-              </div>
-              <span className="font-display font-bold text-[1.1rem] text-white tracking-tight">
-                Xpress E-com
-              </span>
-            </div>
+            <a href="/" className="flex items-center shrink-0">
+              <img
+                src="/logo.png"
+                alt="Xpress E-com"
+                className="h-[52px] w-[52px] object-cover rounded-full"
+              />
+            </a>
 
             {/* Nav links — desktop */}
             <nav className="hidden sm:flex items-center gap-7">

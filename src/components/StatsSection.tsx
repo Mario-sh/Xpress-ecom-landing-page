@@ -117,7 +117,14 @@ export default function StatsSection() {
                 style={{ background: `radial-gradient(ellipse, ${stat.glow} 0%, transparent 70%)` }}
               />
 
-              <div className="relative flex flex-col p-6 sm:p-8 rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm overflow-hidden h-full group-hover:border-white/[0.1] transition-all duration-500 group-hover:-translate-y-1">
+              <div
+                className="relative flex flex-col p-6 sm:p-8 rounded-2xl overflow-hidden h-full transition-all duration-500 group-hover:-translate-y-1"
+                style={{
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.12)',
+                  boxShadow: '0 2px 24px rgba(0,0,0,0.35)',
+                }}
+              >
                 {/* Top gradient tint */}
                 <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${stat.color.replace('from-', 'from-').replace('to-', 'to-')} opacity-60`} />
 

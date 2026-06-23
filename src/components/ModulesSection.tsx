@@ -85,9 +85,9 @@ export default function ModulesSection() {
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line */}
-          <div className="absolute left-4 sm:left-1/2 top-4 bottom-4 w-px sm:-translate-x-1/2 bg-gradient-to-b from-transparent via-white/10 to-transparent" />
+          <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-px sm:-translate-x-1/2 bg-gradient-to-b from-transparent via-white/[0.12] to-transparent" />
 
-          <div className="space-y-10 sm:space-y-16">
+          <div className="space-y-6 sm:space-y-8">
             {modules.map((mod, index) => {
               const Icon = mod.icon;
               const isEven = index % 2 === 0;
@@ -104,7 +104,7 @@ export default function ModulesSection() {
                     viewport={{ once: true, margin: '-80px' }}
                     transition={{ duration: 0.4, delay: 0.2 }}
                     className="absolute left-4 sm:left-1/2 w-3 h-3 rounded-full sm:-translate-x-1/2 z-20 ring-4 ring-gray-950"
-                    style={{ background: mod.accent, boxShadow: `0 0 12px ${mod.accent}60` }}
+                    style={{ background: mod.accent, boxShadow: `0 0 14px ${mod.accent}80` }}
                   />
 
                   {/* Card */}
@@ -113,44 +113,48 @@ export default function ModulesSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: '-80px' }}
                     transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-                    className={`w-full sm:w-[calc(50%-2rem)] pl-12 pr-4 sm:px-0 ${isEven ? 'sm:pl-10' : 'sm:pr-10'}`}
+                    className={`w-full sm:w-[calc(50%-2.5rem)] pl-12 pr-4 sm:px-0 ${isEven ? 'sm:pl-10' : 'sm:pr-10'}`}
                   >
-                    <div className="group relative p-6 sm:p-8 rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm transition-all duration-400 hover:-translate-y-1 hover:border-white/[0.1]">
+                    <div
+                      className="group relative p-6 sm:p-7 rounded-2xl transition-all duration-300 hover:-translate-y-1"
+                      style={{
+                        background: 'rgba(255,255,255,0.04)',
+                        border: '1px solid rgba(255,255,255,0.1)',
+                        boxShadow: '0 2px 20px rgba(0,0,0,0.3)',
+                      }}
+                    >
                       {/* Top accent line */}
                       <div
-                        className="absolute top-0 inset-x-0 h-px rounded-t-2xl"
-                        style={{ background: `linear-gradient(90deg, transparent, ${mod.accent}50, transparent)` }}
+                        className="absolute top-0 inset-x-0 h-[1.5px] rounded-t-2xl"
+                        style={{ background: `linear-gradient(90deg, transparent, ${mod.accent}70, transparent)` }}
                       />
 
-                      <div className="flex items-center gap-4 mb-4">
-                        {/* Icon */}
+                      <div className="flex items-center gap-3 mb-4">
                         <div
-                          className="flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center border border-white/10 group-hover:scale-110 transition-transform duration-400"
-                          style={{ background: `${mod.accent}15`, color: mod.accent }}
+                          className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                          style={{ background: `${mod.accent}20`, color: mod.accent, border: `1px solid ${mod.accent}30` }}
                         >
                           <Icon className="w-5 h-5" />
                         </div>
-
-                        {/* Module number */}
                         <span
-                          className="font-display font-extrabold text-4xl leading-none select-none transition-colors duration-400"
-                          style={{ color: `${mod.accent}18` }}
+                          className="font-display font-extrabold text-3xl leading-none select-none"
+                          style={{ color: `${mod.accent}25` }}
                         >
                           {mod.id}
                         </span>
                       </div>
 
-                      <h3 className="font-display font-bold text-lg sm:text-xl text-white mb-2 tracking-tight">
+                      <h3 className="font-display font-bold text-lg sm:text-xl text-white mb-2">
                         {mod.title}
                       </h3>
-                      <p className="text-sm sm:text-base leading-relaxed" style={{ color: '#6B7280' }}>
+                      <p className="text-sm sm:text-[0.95rem] leading-relaxed" style={{ color: '#9CA3AF' }}>
                         {mod.description}
                       </p>
                     </div>
                   </motion.div>
 
-                  {/* Spacer for the other half */}
-                  <div className="hidden sm:block sm:w-[calc(50%-2rem)]" />
+                  {/* Spacer */}
+                  <div className="hidden sm:block sm:w-[calc(50%-2.5rem)]" />
                 </div>
               );
             })}
