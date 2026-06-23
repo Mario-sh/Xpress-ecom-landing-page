@@ -1,61 +1,59 @@
 import { motion, useInView, animate } from 'motion/react';
-import { Users, Youtube, Trophy, Target } from 'lucide-react';
-import { LiquidCard, CardContent } from './ui/liquid-glass-card';
 import { useRef, useEffect } from 'react';
 
 const stats = [
   {
-    id: 1,
-    name: 'Abonnés sur YouTube',
     numValue: 400,
     prefix: '+',
     suffix: 'k',
-    icon: Youtube,
-    description: 'Une communauté soudée de passionnés'
+    label: 'Abonnés YouTube',
+    description: 'Une communauté soudée de passionnés',
+    color: 'from-brand-500/20 to-brand-600/5',
+    glow: 'rgba(79,123,255,0.15)',
   },
   {
-    id: 2,
-    name: 'Générés en E-com',
     numValue: 10,
     prefix: '>',
     suffix: 'M€',
-    icon: Trophy,
-    description: 'De chiffre d\'affaires cumulé par nos élèves'
+    label: 'Générés en E-com',
+    description: 'De CA cumulé par nos élèves',
+    color: 'from-accent-500/20 to-accent-600/5',
+    glow: 'rgba(139,92,246,0.15)',
   },
   {
-    id: 3,
-    name: 'Élèves formés',
     numValue: 5000,
     prefix: '+',
     suffix: '',
-    icon: Users,
-    description: 'Qui ont suivi nos méthodes avec succès'
+    label: 'Élèves formés',
+    description: 'Qui ont suivi nos méthodes avec succès',
+    color: 'from-brand-500/20 to-accent-500/10',
+    glow: 'rgba(79,123,255,0.12)',
   },
   {
-    id: 4,
-    name: 'Taux de satisfaction',
     numValue: 98,
     prefix: '',
     suffix: '%',
-    icon: Target,
-    description: 'Evalué par nos membres premium'
-  }
+    label: 'Taux de satisfaction',
+    description: 'Évalué par nos membres premium',
+    color: 'from-green-500/20 to-green-600/5',
+    glow: 'rgba(34,197,94,0.12)',
+  },
 ];
 
-function CountUp({ 
-  value, 
-  prefix = "", 
-  suffix = "", 
-  duration = 2.5 
-}: { 
-  value: number; 
-  prefix?: string; 
-  suffix?: string; 
-  duration?: number; 
+function CountUp({
+  value,
+  prefix = '',
+  suffix = '',
+  duration = 2.5,
+}: {
+  value: number;
+  prefix?: string;
+  suffix?: string;
+  duration?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  
+  const isInView = useInView(ref, { once: true, margin: '-80px' });
+
   useEffect(() => {
     if (isInView && ref.current) {
       animate(0, value, {
@@ -63,10 +61,9 @@ function CountUp({
         ease: [0.16, 1, 0.3, 1],
         onUpdate: (latest) => {
           if (ref.current) {
-            const formatted = Math.floor(latest).toLocaleString('en-US');
-            ref.current.textContent = `${prefix}${formatted}${suffix}`;
+            ref.current.textContent = `${prefix}${Math.floor(latest).toLocaleString('fr-FR')}${suffix}`;
           }
-        }
+        },
       });
     }
   }, [isInView, value, duration, prefix, suffix]);
@@ -76,57 +73,67 @@ function CountUp({
 
 export default function StatsSection() {
   return (
-    <section className="relative px-4 py-16 sm:px-6 md:py-24 lg:px-8 bg-gray-950 overflow-hidden">
-      {/* Background glow */}
+    <section className="relative px-4 py-20 sm:px-6 md:py-28 lg:px-8 overflow-hidden">
+      {/* Ambient glow */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[300px] opacity-10 blur-[150px] bg-brand-500 rounded-full" />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[250px] rounded-full blur-[180px]"
+          style={{ background: 'radial-gradient(ellipse, rgba(79,123,255,0.08) 0%, transparent 70%)' }}
+        />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="text-center mb-12 lg:mb-16"
+          className="text-center mb-14 lg:mb-20"
         >
-          <h2 className="text-sm font-display font-medium tracking-widest uppercase text-brand-400 mb-2">L'Impact en chiffres</h2>
-          <p className="mt-2 text-3xl font-display font-bold text-white sm:text-4xl md:text-5xl text-balance">
-            Des résultats concrets, <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-400 to-gray-200">une expertise prouvée.</span>
+          <p className="text-xs font-medium tracking-[0.2em] uppercase mb-3" style={{ color: '#4F7BFF' }}>
+            L'impact en chiffres
           </p>
+          <h2 className="font-display font-extrabold text-white text-balance leading-tight" style={{ fontSize: 'clamp(1.8rem, 4vw, 3rem)' }}>
+            Des résultats concrets,{' '}
+            <span className="bg-gradient-to-r from-gray-300 to-gray-500 bg-clip-text text-transparent">
+              une expertise prouvée.
+            </span>
+          </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((stat, index) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={stat.id}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="h-full"
-              >
-                <LiquidCard className="h-full group hover:-translate-y-1 transition-transform duration-500 bg-gray-900/30">
-                  <CardContent className="p-8 flex flex-col items-center text-center h-full justify-center">
-                    <div className="flex items-center justify-center w-14 h-14 mb-6 rounded-2xl bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700/50 shadow-lg text-brand-400 group-hover:scale-110 transition-transform duration-500 group-hover:text-brand-300">
-                      <Icon className="w-7 h-7" />
-                    </div>
-                    <div className="font-display font-black text-4xl sm:text-5xl text-white mb-3 tracking-tight">
-                      <CountUp value={stat.numValue} prefix={stat.prefix} suffix={stat.suffix} />
-                    </div>
-                    <div className="text-base sm:text-lg font-semibold text-gray-200 mb-2">
-                      {stat.name}
-                    </div>
-                    <div className="text-sm text-gray-400">
-                      {stat.description}
-                    </div>
-                  </CardContent>
-                </LiquidCard>
-              </motion.div>
-            );
-          })}
+        <div className="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:gap-6">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 32, scale: 0.96 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.6, delay: index * 0.09, ease: [0.16, 1, 0.3, 1] }}
+              className="group relative"
+            >
+              {/* Card glow on hover */}
+              <div
+                className="absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm"
+                style={{ background: `radial-gradient(ellipse, ${stat.glow} 0%, transparent 70%)` }}
+              />
+
+              <div className="relative flex flex-col p-6 sm:p-8 rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-sm overflow-hidden h-full group-hover:border-white/[0.1] transition-all duration-500 group-hover:-translate-y-1">
+                {/* Top gradient tint */}
+                <div className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r ${stat.color.replace('from-', 'from-').replace('to-', 'to-')} opacity-60`} />
+
+                <div className="font-display font-extrabold leading-none tracking-tight mb-3 bg-gradient-to-br from-white to-gray-300 bg-clip-text text-transparent" style={{ fontSize: 'clamp(2.2rem, 5vw, 3.5rem)' }}>
+                  <CountUp value={stat.numValue} prefix={stat.prefix} suffix={stat.suffix} />
+                </div>
+
+                <div className="text-sm sm:text-base font-semibold text-gray-100 mb-1.5 leading-snug">
+                  {stat.label}
+                </div>
+                <div className="text-xs sm:text-sm leading-relaxed mt-auto" style={{ color: '#6B7280' }}>
+                  {stat.description}
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

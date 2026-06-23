@@ -1,16 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  
-  --color-brand-400: #3b82f6;
-  --color-brand-500: #2563eb;
-  --color-brand-600: #1d4ed8;
-  
-  --color-accent-400: #8b5cf6;
-  --color-accent-500: #7c3aed;
+  --font-display: "Alegreya", ui-serif, Georgia, serif;
+
+  /* Electric blue — plus distinctif que le #2563eb standard */
+  --color-brand-200: #c7d9ff;
+  --color-brand-300: #93b4ff;
+  --color-brand-400: #6B9FFF;
+  --color-brand-500: #4F7BFF;
+  --color-brand-600: #3B6AEE;
+  --color-brand-700: #2952d4;
+
+  /* Violet accent */
+  --color-accent-300: #c4b5fd;
+  --color-accent-400: #a78bfa;
+  --color-accent-500: #8b5cf6;
+  --color-accent-600: #7c3aed;
+
+  /* Palette sombre raffinée */
+  --color-gray-950: #080B14;
+  --color-gray-900: #0D1117;
 
   --animate-marquee: marquee 40s linear infinite;
   --animate-marquee-reverse: marquee-reverse 40s linear infinite;
@@ -27,8 +37,13 @@
 }
 
 body {
-  background-color: #030712; /* gray-950 */
-  color: #f9fafb; /* gray-50 */
+  background-color: #080B14;
+  color: #F0F2F7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(79, 123, 255, 0.25);
+  color: #c4b5fd;
 }

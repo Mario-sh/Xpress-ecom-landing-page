@@ -1,97 +1,145 @@
 import { motion } from 'motion/react';
-import { Check, ShieldCheck, Zap } from 'lucide-react';
+import { Check, ShieldCheck, ArrowRight } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 
 const features = [
-  "Accès à vie aux 6 modules complets",
-  "Mises à jour gratuites de la formation",
-  "Templates Shopify ultra-performants inclus",
-  "Processus de scaling publicitaire exact",
-  "Ressources et documents légaux téléchargeables",
-  "Accès à la communauté privée Discord",
+  'Accès à vie aux 6 modules complets',
+  'Mises à jour gratuites de la formation',
+  'Templates Shopify ultra-performants inclus',
+  'Processus de scaling publicitaire exact (Meta/TikTok)',
+  'Ressources et documents légaux téléchargeables',
+  'Accès à la communauté privée Discord',
 ];
 
 export default function PricingSection({ onJoin }: { onJoin?: () => void }) {
   return (
-    <section className="relative px-4 py-16 sm:px-6 md:py-24 lg:px-8 mt-12 overflow-hidden">
-      {/* Background glow specific to pricing */}
+    <section id="pricing" className="relative px-4 py-20 sm:px-6 md:py-28 lg:px-8 overflow-hidden">
+      {/* Glow */}
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <div className="w-full max-w-2xl h-[500px] bg-brand-600/20 blur-[120px] rounded-full mix-blend-screen" />
+        <div
+          className="w-full max-w-2xl h-[500px] rounded-full blur-[160px]"
+          style={{ background: 'radial-gradient(ellipse, rgba(79,123,255,0.12) 0%, rgba(139,92,246,0.06) 50%, transparent 100%)' }}
+        />
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gray-100 leading-tight mb-4 text-balance">
-            Prêt à lancer votre boutique ?
-          </h2>
-          <p className="text-lg font-display font-light text-gray-400">
-            Rejoignez Xpress E-com aujourd'hui et commencez à construire votre liberté.
-          </p>
-        </motion.div>
-
+        {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mx-auto max-w-lg relative group/pricing"
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="text-center mb-14"
         >
-          {/* Glass background */}
-          <div className="absolute inset-0 bg-gray-900/30 backdrop-blur-2xl rounded-3xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.4)] pointer-events-none" />
-          {/* Subtle inside gradient */}
-          <div className="absolute inset-0 bg-gradient-to-b from-white/[0.06] to-transparent rounded-3xl pointer-events-none opacity-80" />
-          {/* Top glowing line */}
-          <div className="absolute top-0 inset-x-8 h-px bg-gradient-to-r from-transparent via-brand-400/80 to-transparent pointer-events-none" />
-          
-          <div className="relative z-10 p-8 sm:p-10 rounded-3xl overflow-hidden">
-            <CountdownTimer />
-
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h3 className="font-display font-bold text-2xl text-gray-100">Xpress E-com</h3>
-              <p className="text-sm text-gray-400 mt-1">Programme d'excellence complet</p>
-            </div>
-            <div className="px-3 py-1 text-xs font-semibold text-brand-400 uppercase tracking-widest bg-brand-500/10 rounded-full border border-brand-500/20">
-              Populaire
-            </div>
-          </div>
-
-          <div className="mb-8 flex items-baseline gap-2">
-            <span className="text-5xl font-display font-black text-gray-100">297€</span>
-            <span className="text-lg text-gray-500 line-through decoration-gray-500/50">997€</span>
-          </div>
-
-          <button 
-            onClick={onJoin}
-            className="w-full relative group overflow-hidden flex items-center justify-center gap-2 px-8 py-4 mb-8 text-base font-semibold text-white transition-all duration-300 rounded-xl bg-brand-600 hover:bg-brand-500 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+          <h2
+            className="font-display font-extrabold text-white leading-tight mb-4 text-balance"
+            style={{ fontSize: 'clamp(1.9rem, 5vw, 3.5rem)' }}
           >
-            <Zap className="w-5 h-5 text-brand-200" />
-            <span className="relative z-10">Rejoindre le programme</span>
-            {/* Hover reflection */}
-            <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent group-hover:animate-[shimmer_1.5s_infinite]" />
-          </button>
+            Prêt à lancer votre boutique ?
+          </h2>
+          <p className="text-base sm:text-lg" style={{ color: '#6B7280' }}>
+            Rejoignez Xpress E-com et commencez à construire votre liberté financière.
+          </p>
+        </motion.div>
 
-          <ul className="space-y-4 mb-8">
-            {features.map((feature, i) => (
-              <li key={i} className="flex items-start gap-3">
-                <div className="flex-shrink-0 mt-0.5">
-                  <Check className="w-5 h-5 text-brand-400" />
+        {/* Pricing card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto max-w-lg relative"
+        >
+          {/* Gradient border */}
+          <div
+            className="absolute -inset-[1.5px] rounded-3xl"
+            style={{ background: 'linear-gradient(135deg, rgba(79,123,255,0.4), rgba(139,92,246,0.2), rgba(255,255,255,0.04))' }}
+          />
+
+          {/* Card body */}
+          <div
+            className="relative rounded-3xl overflow-hidden"
+            style={{ background: '#0D1117', backdropFilter: 'blur(20px)' }}
+          >
+            {/* Top gradient bar */}
+            <div
+              className="h-px w-full"
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(79,123,255,0.7), rgba(139,92,246,0.5), transparent)' }}
+            />
+
+            <div className="p-8 sm:p-10">
+              <CountdownTimer />
+
+              {/* Card header */}
+              <div className="flex items-start justify-between mb-7">
+                <div>
+                  <h3 className="font-display font-bold text-2xl text-white">Xpress E-com</h3>
+                  <p className="text-sm mt-1" style={{ color: '#6B7280' }}>Programme d'excellence complet</p>
                 </div>
-                <span className="text-gray-300 text-sm">{feature}</span>
-              </li>
-            ))}
-          </ul>
+                <span
+                  className="px-3 py-1.5 text-xs font-bold tracking-[0.1em] uppercase rounded-full"
+                  style={{ color: '#6B9FFF', background: 'rgba(79,123,255,0.1)', border: '1px solid rgba(79,123,255,0.25)' }}
+                >
+                  Populaire
+                </span>
+              </div>
 
-          <div className="pt-6 border-t border-white/10 flex items-center justify-center gap-2 text-xs text-gray-400">
-            <ShieldCheck className="w-4 h-4" />
-            Paiement 100% sécurisé via Stripe
-          </div>
+              {/* Price */}
+              <div className="flex items-baseline gap-3 mb-8">
+                <span className="font-display font-extrabold text-5xl text-white">297€</span>
+                <div className="flex flex-col">
+                  <span className="text-lg line-through" style={{ color: '#4B5563', textDecorationColor: '#4B5563' }}>997€</span>
+                  <span className="text-xs font-medium" style={{ color: '#22c55e' }}>-70% aujourd'hui</span>
+                </div>
+              </div>
+
+              {/* CTA button */}
+              <button
+                onClick={onJoin}
+                className="group w-full relative flex items-center justify-center gap-2 px-8 py-4 mb-8 rounded-xl text-base font-bold text-white overflow-hidden transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400"
+                style={{
+                  background: 'linear-gradient(135deg, #4F7BFF, #8b5cf6)',
+                  boxShadow: '0 0 0 0 rgba(79,123,255,0.4)',
+                }}
+                onMouseEnter={e => {
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 0 0 8px rgba(79,123,255,0.12), 0 8px 32px rgba(79,123,255,0.3)';
+                  (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(-1px)';
+                }}
+                onMouseLeave={e => {
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = '0 0 0 0 rgba(79,123,255,0.4)';
+                  (e.currentTarget as HTMLButtonElement).style.transform = 'translateY(0)';
+                }}
+              >
+                {/* Shimmer */}
+                <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent group-hover:translate-x-full transition-transform duration-700" />
+                <span className="relative z-10">Rejoindre le programme</span>
+                <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-0.5 transition-transform duration-200" />
+              </button>
+
+              {/* Features */}
+              <ul className="space-y-3.5 mb-8">
+                {features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div
+                      className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5"
+                      style={{ background: 'rgba(79,123,255,0.15)' }}
+                    >
+                      <Check className="w-3 h-3" style={{ color: '#6B9FFF' }} />
+                    </div>
+                    <span className="text-sm leading-relaxed" style={{ color: '#9CA3AF' }}>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Security badge */}
+              <div
+                className="flex items-center justify-center gap-2 pt-6 text-xs"
+                style={{ borderTop: '1px solid rgba(255,255,255,0.05)', color: '#4B5563' }}
+              >
+                <ShieldCheck className="w-4 h-4" />
+                Paiement 100% sécurisé · Stripe · Satisfait ou remboursé 30j
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
